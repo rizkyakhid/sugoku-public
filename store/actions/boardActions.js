@@ -19,7 +19,6 @@ export function generateBoard() {
 }
 
 export function autoSolve(board) {
-  console.log(board, "INI BOARDNYA")
   return (dispatch) => {
     fetch('https://sugoku.herokuapp.com/solve', {
       method: 'POST',

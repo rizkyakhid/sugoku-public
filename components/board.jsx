@@ -1,4 +1,4 @@
-import { View, Text, Button } from 'react-native'
+import { View, Text, Button, TextInput } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { autoSolve, generateBoard, validate } from '../store/actions/boardActions'
@@ -8,13 +8,17 @@ export default function Board(props) {
   const status = useSelector((state) => state.status)
   const dispatch = useDispatch()
   const [ inputBoard, setInputBoard ] = useState([])
+  const [ inStatus, setInStatus ] = useState('') 
 
   useEffect(() => {
     setInputBoard(board)
-  }, [board, status])
+  }, [board])
+
+  useEffect(() => {
+    setInStatus(status)
+  }, [status])
 
   function handleSolve() {
-    // console.log(board, "IN BOARDNYA")
     dispatch(autoSolve(inputBoard))
   }
 
@@ -24,8 +28,8 @@ export default function Board(props) {
 
   function handleValidate() {
     dispatch(validate(inputBoard))
-    console.log(status)
-    // alert(status)
+    console.log(inStatus)
+    alert(inStatus)
   }
 
   return (
@@ -34,7 +38,7 @@ export default function Board(props) {
         <View key={idRow} style={{ flexDirection: 'row', backgroundColor: '#fc3903' }}>
           {boardRow.map((boardCol, idCol) => (
             <View key={idCol} style={{ borderWidth: 1, padding: 4 }}>
-              <Text>{boardCol}</Text>
+              <TextInput keyboardType='numeric'>{boardCol}</TextInput>
             </View>
           ))}
         </View>
