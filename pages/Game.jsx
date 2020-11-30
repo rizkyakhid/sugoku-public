@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
-import { View, Text, TextInput, Button } from "react-native";
+import { View, Text } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
+import Board from "../components/board";
 import { generateBoard } from "../store/actions/boardActions";
 
 export function Game() {
@@ -14,16 +15,8 @@ export function Game() {
   console.log(board)
 
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      { board.map((boardRow, idRow) => (
-        <View key={idRow} style={{ flexDirection: 'row' }}>
-          {boardRow.map((boardCol, idCol) => (
-            <View key={idCol} style={{ borderWidth: 1, padding: 4 }}>
-              <Text>{boardCol}</Text>
-            </View>
-          ))}
-        </View>
-      ))}
+    <View>
+      <Board board={board}></Board>
     </View>
   )
 }
