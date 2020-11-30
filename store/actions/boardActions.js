@@ -18,12 +18,12 @@ export function generateBoard() {
   }
 }
 
-export function autoSolve() {
-  return (dispatch, getState) => {
-    console.log(getState().board, 'INI BOARDNYA DI ACTIONS')
+export function autoSolve(board) {
+  console.log(board, "INI BOARDNYA")
+  return (dispatch) => {
     fetch('https://sugoku.herokuapp.com/solve', {
       method: 'POST',
-      body: encodeParams(getState().board),
+      body: encodeParams(board),
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
     })
       .then(res => res.json())
@@ -36,11 +36,11 @@ export function autoSolve() {
   }
 }
 
-export function validate() {
-  return (dispatch, getState) => {
+export function validate(board) {
+  return (dispatch) => {
     fetch('https://sugoku.herokuapp.com/validate', {
       method: 'POST',
-      body: encodeParams(getState().board),
+      body: encodeParams(board),
       headers: {
         "Content-Type": "application/x-www-form-urlencoded"
       }

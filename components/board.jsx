@@ -1,5 +1,5 @@
 import { View, Text, Button } from 'react-native'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { autoSolve, generateBoard, validate } from '../store/actions/boardActions'
 
@@ -7,10 +7,15 @@ export default function Board(props) {
   const { board } = props
   const status = useSelector((state) => state.status)
   const dispatch = useDispatch()
+  const [ inputBoard, setInputBoard ] = useState([])
+
+  useEffect(() => {
+    setInputBoard(board)
+  }, [board, status])
 
   function handleSolve() {
     // console.log(board, "IN BOARDNYA")
-    dispatch(autoSolve())
+    dispatch(autoSolve(inputBoard))
   }
 
   function handleNewGame() {
@@ -18,10 +23,9 @@ export default function Board(props) {
   }
 
   function handleValidate() {
-    console.log('INI VALIDATE')
-    dispatch(validate())
+    dispatch(validate(inputBoard))
     console.log(status)
-    alert(status)
+    // alert(status)
   }
 
   return (
