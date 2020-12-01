@@ -5,9 +5,9 @@ const encodeParams = (params) =>
     .map(key => key + '=' + `%5B${encodeBoard(params[key])}%5D`)
     .join('&');
 
-export function generateBoard() {
+export function generateBoard(difficulty) {
   return (dispatch) => {
-    fetch('https://sugoku.herokuapp.com/board?difficulty=random')
+    fetch('https://sugoku.herokuapp.com/board?difficulty='+difficulty)
       .then(res => res.json())
       .then(({ board }) => {
         dispatch({ type: "SET_BOARD", payload: board })
