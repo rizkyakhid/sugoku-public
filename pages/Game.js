@@ -12,8 +12,6 @@ export function Game() {
     dispatch(generateBoard())
   }, [])
 
-  console.log(board)
-
   return (
     <View>
       <Board board={board}></Board>

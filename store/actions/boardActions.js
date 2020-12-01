@@ -19,16 +19,17 @@ export function generateBoard() {
 }
 
 export function autoSolve(board) {
+  const dataToSend = {
+    board: board
+  }
   return (dispatch) => {
     fetch('https://sugoku.herokuapp.com/solve', {
       method: 'POST',
-      body: encodeParams(board),
+      body: encodeParams(dataToSend),
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
     })
-      .then(res => res.json())
-      .then(data => {
-        dispatch({ type: "SET_BOARD", payload: data.solution })
-      })
+      .then(response => response.json())
+      .then(response => dispatch({ type: "SET_BOARD", payload: response.solution }))
       .catch(err => {
         console.log(err)
       })
@@ -36,10 +37,13 @@ export function autoSolve(board) {
 }
 
 export function validate(board) {
+  const dataToSend = {
+    board: board
+  }
   return (dispatch) => {
     fetch('https://sugoku.herokuapp.com/validate', {
       method: 'POST',
-      body: encodeParams(board),
+      body: encodeParams(dataToSend),
       headers: {
         "Content-Type": "application/x-www-form-urlencoded"
       }

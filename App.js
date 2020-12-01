@@ -9,8 +9,8 @@ export default function App() {
   return (
     <Provider store={store}>
       <View style={styles.container}>
+        <StatusBar style='auto'/>
         <Game></Game>
-        <StatusBar style="auto" />
       </View>
     </Provider>
   );
