@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Board from "../components/board";
 import { generateBoard } from "../store/actions/boardActions";
 
-export function Game() {
+export default function Game() {
   const board = useSelector((state) => state.board)
   const dispatch = useDispatch()
 

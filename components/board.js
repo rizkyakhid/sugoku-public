@@ -26,26 +26,35 @@ export default function Board(props) {
     dispatch(generateBoard())
   }
 
-  function handleValidate(boardParams) {
-    dispatch(validate(boardParams))
+  function handleValidate() {
+    dispatch(validate(board))
+    // alert(inputStatus)
+  }
+
+  function handleChange(i, j, val) {
+    const newData = JSON.parse(JSON.stringify(inputBoard))
+    newData[i][j] = val
+    setInputBoard(newData)
   }
 
   return (
     <View>
-      { board.map((boardRow, idRow) => (
+      { inputBoard.map((boardRow, idRow) => (
         <View key={idRow} style={{ flexDirection: 'row', backgroundColor: '#fc3903' }}>
           {boardRow.map((boardCol, idCol) => (
             <TextInput
               key={idCol}
+              onChangeText={(value) => handleChange(idRow, idCol, value) }
               style={{ textAlign: 'center', color: '#000000', borderWidth: 1, width: 40, height: 40, textAlign: 'center', justifyContent: "center", backgroundColor: boardCol !== 0 ? '#fc3903' : '#f0f0f0' }}
               keyboardType='numeric'
               value={boardCol !== 0 ? String(boardCol) : ''}
               editable={boardCol !== 0 ? false : true}
+              maxLength={1}
             />
           ))}
         </View>
       ))}
-      <Button onPress={() => handleValidate(inputBoard)} title='Validate'></Button>
+      <Button onPress={handleValidate} title='Validate'></Button>
       <Button onPress={handleSolve} title='Solve'></Button>
       <Button onPress={handleNewGame} title='New Game'></Button>
     </View>

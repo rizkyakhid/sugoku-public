@@ -2,16 +2,25 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Provider } from 'react-redux';
-import { Game } from './pages/Game';
 import store from "./store";
+import { createStackNavigator } from "@react-navigation/stack";
+import { NavigationContainer } from '@react-navigation/native';
+import Game from './screens/Game';
+import Home from './screens/Home';
+
+const Stack = createStackNavigator()
+
 
 export default function App() {
   return (
     <Provider store={store}>
-      <View style={styles.container}>
-        <StatusBar style='auto'/>
-        <Game></Game>
-      </View>
+      <StatusBar style='auto' />
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name="Home" component={Home} />
+          <Stack.Screen name="Game" component={Game} />
+        </Stack.Navigator>
+      </NavigationContainer>
     </Provider>
   );
 }
