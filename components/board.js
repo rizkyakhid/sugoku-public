@@ -22,6 +22,10 @@ export default function Board(props) {
 
   function handleSolve() {
     dispatch(autoSolve(board))
+    Alert.alert(
+      'DEAR',
+      'Your board is solved automatically.. Hopefully you can solve it by yourself later!'
+    )
   }
 
   function handleValidate() {
@@ -36,9 +40,6 @@ export default function Board(props) {
           }
         ]
       )
-      setTimeout(() => {
-        navigation.navigate('Finish')
-      }, 2000);
     } else {
       Alert.alert(
         `UNSOLVED`, 
@@ -78,7 +79,7 @@ export default function Board(props) {
                 height: (windowWidth - 20) / 9,
                 textAlign: 'center',
                 justifyContent: "center",
-                backgroundColor: board[idRow][idCol] !== 0 ? 'yellow' : '#f0f0f0',
+                backgroundColor: board[idRow][idCol] !== 0 ? '#ff756b' : '#f0f0f0',
                 fontSize: 24,
 
               }}

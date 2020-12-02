@@ -14,12 +14,12 @@ export default function Game({ route, navigation }) {
   }, [])
 
   return (
-    <View style={{ flex: 1, justifyContent: "center",  backgroundColor: '#f0f0f0' }}>
+    <View style={{ flex: 1, justifyContent: "center", backgroundColor: '#f0f0f0' }}>
       <View style={{ marginLeft: 10, marginBottom: 5 }}>
-        <Text>Name: {playerName}</Text>
-        <Text>Difficulty: {difficulty}</Text>
+        <Text style={{ fontSize: 16 }}>Name: {playerName}</Text>
+        <Text style={{ fontSize: 16 }}>Difficulty: {difficulty}</Text>
       </View>
-      <View style={{ justifyContent:'center', alignItems: 'center' }}>
+      <View style={{ justifyContent: 'center', alignItems: 'center' }}>
         <Board board={board} navigation={navigation}></Board>
       </View>
     </View>
