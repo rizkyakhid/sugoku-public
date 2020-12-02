@@ -2,9 +2,9 @@ import React, { useEffect } from "react";
 import { View, Text } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import Board from "../components/board";
-import { generateBoard } from "../store/actions/boardActions";
+import { generateBoard, validate } from "../store/actions/boardActions";
 
-export default function Game({ route }) {
+export default function Game({ route, navigation }) {
   const board = useSelector((state) => state.board)
   const dispatch = useDispatch()
   const { difficulty, playerName } = route.params
@@ -14,12 +14,13 @@ export default function Game({ route }) {
   }, [])
 
   return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center", backgroundColor: '#f0f0f0' }}>
-      <View>
-        <Text>{playerName}</Text>
+    <View style={{ flex: 1, justifyContent: "center",  backgroundColor: '#f0f0f0' }}>
+      <View style={{ marginLeft: 10, marginBottom: 5 }}>
+        <Text>Name: {playerName}</Text>
+        <Text>Difficulty: {difficulty}</Text>
       </View>
-      <View>
-        <Board board={board}></Board>
+      <View style={{ justifyContent:'center', alignItems: 'center' }}>
+        <Board board={board} navigation={navigation}></Board>
       </View>
     </View>
   )

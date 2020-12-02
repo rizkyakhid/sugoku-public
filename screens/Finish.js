@@ -1,8 +1,15 @@
 import React from "react";
-import { Text } from "react-native";
+import { Button, Text, View } from "react-native";
 
-export default function Finish() {
+export default function Finish({ navigation }) {
+  function handleBackHome() {
+    navigation.navigate('Home')
+  }
+
   return (
-    <Text>Ini finish page nya!</Text>
+    <View style={{ flex: 2, justifyContent: 'center', alignItems: 'center' }}>
+      <Text>You finished the game! Well done!</Text>
+      <Button title='Back to Home' onPress={handleBackHome}/>
+    </View>
   )
 }
