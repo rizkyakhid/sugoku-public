@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { View, Text } from "react-native";
+import React, { useEffect, useState } from "react";
+import { View, Text, ActivityIndicator } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import Board from "../components/board";
 import { generateBoard, validate } from "../store/actions/boardActions";
@@ -8,10 +8,22 @@ export default function Game({ route, navigation }) {
   const board = useSelector((state) => state.board)
   const dispatch = useDispatch()
   const { difficulty, playerName } = route.params
+  const [loader, setLoader] = useState(true)
 
   useEffect(() => {
     dispatch(generateBoard(difficulty))
+    setTimeout(() => {
+      setLoader(false)
+    }, 2000);
   }, [])
+
+  if(loader) {
+    return(
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <ActivityIndicator size="large" color='#ff756b' />
+      </View>
+    )
+  }
 
   return (
     <View style={{ flex: 1, justifyContent: "center", backgroundColor: '#f0f0f0' }}>

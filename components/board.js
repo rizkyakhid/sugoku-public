@@ -9,7 +9,7 @@ export default function Board(props) {
   const dispatch = useDispatch()
   const [inputBoard, setInputBoard] = useState([])
   const [inputStatus, setInputStatus] = useState('')
-  const windowWidth = useWindowDimensions().width;
+  const windowWidth = useWindowDimensions().width
 
   useEffect(() => {
     setInputBoard(board)
@@ -52,6 +52,14 @@ export default function Board(props) {
       )
     }
   }
+
+  // if(loader) {
+  //   return(
+  //     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+  //       <ActivityIndicator size="large" color='#ff756b' />
+  //     </View>
+  //   )
+  // }
 
   function handleChange(i, j, val) {
     const newData = JSON.parse(JSON.stringify(inputBoard))
